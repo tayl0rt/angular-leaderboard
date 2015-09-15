@@ -11,6 +11,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope', function($scope) {
 
+		//todo: Figure out how to select an employee by ID and highlight the specific employee light teal
+
 		$scope.staff =	{
 			Employees:
 				[

@@ -23,4 +23,4 @@ More info here - https://angularjs.org/
 
 ## Uses http-server
 
-Run `node path/to/the/http-server/bin/http-server` to start
+Run `node angular-leaderboard/node_modules/http-server/bin/http-server` to start

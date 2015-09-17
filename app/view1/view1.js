@@ -6,28 +6,32 @@ angular.module('myApp.view1', ['ngRoute'])
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
+	  //resolve: {
+		//  employees: ['myAppService', function(myAppService){
+		//	  var employees = myAppService.getEmployees();
+		//  }]
+	  //}
   });
 }])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
+.service('myAppService', function($http, $q) {
+	var deferred = $q.defer();
+	$http.get('/assets/js/employees.json').then(function(data) {
+		deferred.resolve(data);
+	});
+	this.getEmployees = function() {
+		return deferred.promise;
+	}
+})
+
+.controller('View1Ctrl', ['$scope', 'myAppService', function($scope, myAppService) {
 
 		//todo: Figure out how to select an employee by ID and highlight the specific employee light teal
 
-		$scope.staff =	{
-			Employees:
-				[
-					{_id: 1, name: 'Bill', score: 0},
-					{_id: 2, name: 'Ted', score: 0},
-					{_id: 3, name: 'Mary', score: 0},
-					{_id: 4, name: 'Samantha', score: 0},
-					{_id: 5, name: 'Jordan', score: 0}
-				]
-		};
-
-		var employeeId = $scope.staff.Employees._id;
-
-		$scope.getId = function() {
-			console.log(employeeId);
-		};
+		var promise = myAppService.getEmployees();
+		promise.then(function(data) {
+			$scope.employees = data.data;
+			console.log($scope.employees);
+		});
 	}
 ]);

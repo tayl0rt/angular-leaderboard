@@ -18,9 +18,9 @@
 
 			<!-- todo: Figure out how to select an employee by ID and highlight the specific employee light teal -->
 			<!-- See Below -->
-			<tr ng-click="getId()" ng-repeat="person in staff.Employees | orderBy: 'score'">
-				<td class = "player">{{person.name}}</td>
-				<td>{{person.score}}</td>
+			<tr ng-repeat="employee in employees | orderBy: 'score'">
+				<td class = "employeeName">{{employee.name}}</td>
+				<td class = "employeeScore">{{employee.score}}</td>
 			</tr>
 			</tbody>
 		</table>

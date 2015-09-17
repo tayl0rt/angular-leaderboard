@@ -20,3 +20,7 @@ More info here - https://angularjs.org/
 
 
 ### This is an ultra boredom project, and is currently a work in progress.
+
+## Uses http-server
+
+Run `node path/to/the/http-server/bin/http-server` to start

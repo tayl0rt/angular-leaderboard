@@ -14,6 +14,10 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
+
+	//Don't really know about this service below's logic yet sadly, learned from Accio Code on YouTube.
+	//todo: investigate more how promises work in general, and $q.
+
 .service('myAppService', function($http, $q) {
 	var deferred = $q.defer();
 	$http.get('/assets/js/employees.json').then(function(data) {
@@ -30,7 +34,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 		var promise = myAppService.getEmployees();
 		promise.then(function(data) {
-			$scope.employees = data.data;
+			$scope.employees = data.data; // todo: Why is this data.data? Not understanding what .data does - Find Answer.
 			console.log($scope.employees);
 		});
 	}

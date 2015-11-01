@@ -1,0 +1,53 @@
+<!-- public/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <title>Starter Node and Angular</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../libs/materialize/bin/materialize.css">
+  <link rel="stylesheet" href="../css/app.css"> <!-- custom styles -->
+
+  <!-- JS -->
+  <script src="../libs/angular/angular.js"></script>
+  <script src="../libs/angular-route/angular-route.js"></script>
+
+  <!-- ANGULAR CUSTOM -->
+  <script src="../js/controllers/MainCtrl.js"></script>
+  <script src="../js/controllers/PlayerCtrl.js"></script>
+  <script src="../js/services/PlayerPromiseService.js"></script>
+  <script src="../js/factories/PlayerRESTFactory.js"></script>
+  <script src="../js/appRoutes.js"></script>
+  <script src="../js/app.js"></script>
+</head>
+<body ng-app="angLeaderboard" ng-controller="MainController">
+<div class="container">
+
+  <!-- HEADER
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Stencil: Node and Angular</a>
+    </div>
+
+    &lt;!&ndash; LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE &ndash;&gt;
+    <ul class="nav navbar-nav">
+      <li><a href="/players"></a></li>
+    </ul>
+  </nav>-->
+
+  <!-- ANGULAR DYNAMIC CONTENT -->
+
+  <div class="nav-wrapper card-panel red lighten-1 white-text">
+    <h1 class="center-align">Leaderboard Dashboard</h1>
+    <h5 class="center-align">Manage employee score</h5>
+  </div>
+
+
+  <div ng-view></div>
+
+</div>
+</body>
+</html>

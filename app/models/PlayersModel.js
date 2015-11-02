@@ -7,4 +7,4 @@ var PlayerSchema   = new Schema({
 	},
 	{collection: 'Players' });
 
-module.exports = mongoose.model('Player', PlayerSchema);
+module.exports = mongoose.model('Players', PlayerSchema);

@@ -1,18 +1,21 @@
 // public/js/appRoutes.js
-angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', ['ngRoute'])
 
-	$routeProvider
+	.config(function($routeProvider, $locationProvider) {
+
+		$routeProvider
 
 		// home page
-		.when('/players', {
-			templateUrl: 'public/views/player.html',
+		.when('/', {
+			templateUrl: 'views/players.html',
 			controller: 'PlayerController'
 		})
+
 		.otherwise({
-			template: '<div class="container"><p class="flow-text">Page not found!</p></div>'
+			template: '<div class="card-panel white"><h3 class="flow-text center-align">Page not found!</h3></div>'
 		})
 	;
 
 	$locationProvider.html5Mode(true);
 
-}]);
+});

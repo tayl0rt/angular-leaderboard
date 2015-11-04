@@ -12,7 +12,7 @@ angular.module('PlayerCtrl', [])
 		}
 	}])*/
 
-	.controller('PlayerController', ['$scope', '$http', 'GetPlayerService', function($scope, $http, PlayerService) {
+	.controller('PlayerController', ['$scope', '$http', function($scope, $http) {
 
 		//todo: Figure out how to select an employee by ID and highlight the specific employee light teal
 
@@ -21,23 +21,25 @@ angular.module('PlayerCtrl', [])
 
 
 		$http.get('/api/players')
-			.success(function(data) {
-				$scope.players = data;
-				console.log(data);
+			.success(function(response) {
+				$scope.players = response;
+				console.log($scope.players);
 			})
 
 			.error(function data(){
 			console.log('Error: ' + data);
 			});
 
+		$scope.addPlayer = function() {
+			$http.post('/api/players', $scope.player);
+			console.log($scope.player)
+		};
 
 
 
-		$scope.addFivePoints = function(id) {
-			$http.put('/api/players/:player_id')
-				.success(function (data) {
-					$scope.player.score = data;
-					console.log(data);
-				})
+
+		$scope.getID = function() {
+			console.log(this.player._id);
+
 		}
 	}]);

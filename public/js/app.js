@@ -1,1 +1,1 @@
-angular.module('meanLeaderboard', ['ngRoute', 'appRoutes', 'PlayerCtrl', 'PlayerPromiseService']);
+angular.module('meanLeaderboard', ['ngRoute', 'appRoutes', 'PlayerCtrl']);

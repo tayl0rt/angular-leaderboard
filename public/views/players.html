@@ -1,7 +1,45 @@
 
 <div class="card-panel white">
+	<div class="container">
+		<p class="flow-text">The winner for each week receives 25 additional credits to their pay. You can manage the current rankings below, and visit the <a href="#!">payroll site</a> to add the winner's earnings!</p>
 
-	<p>Total Players: </p>
+	</div>
+</div>
+
+<!--<div class="card-panel white">
+	<div class="container input-field">
+		<p class="flow-text center-align">Add Employee</p>
+		<input type="text" id="name" class="form-control" placeholder="Employee Name" ng-model="player.name">
+		<label for="name">Name</label>
+		<input type="text" id="score" class="form-control col s4 right" placeholder="Employee Score" ng-model="player.score">
+		<label for="score">Score</label>
+		<button type="submit" class="right btn medium" ng-click="addPlayer()">Add Employee</button>
+		<br>
+		<br>
+	</div>
+</div>-->
+<div class="card-panel white">
+<div class="row">
+	<p class="flow-text center-align">Add Employee to list</p>
+	<form class="col s12">
+		<div class="">
+			<div class="input-field col s12">
+				<input type="text" id="name" class="form-control" ng-model="player.name">
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field col s12">
+				<input disabled type="text" id="disabled" class="validate">
+				<label for="disabled">Score will default to 0 - Add 5 points from the button below</label>
+			</div>
+		</div>
+		<button type="submit" class="right btn medium" ng-click="addPlayer()">Add Employee</button>
+		</form>
+	</div>
+</div>
+
+<div class="card-panel white">
+
+	<p class="flow-text center-align">Current Rankings</p>
 
 	<table class="bordered">
 		<thead>
@@ -15,17 +53,20 @@
 
 		<!-- todo: Figure out how to select an employee by ID and highlight the specific employee light teal -->
 		<!-- See Below -->
-		<tr ng-repeat="player in players | orderBy: 'score'">
-			<td class = "employeeName" ng-click="logID()">{{player.name}}</td>
-			<td class = "employeeScore">{{player.score}}</td>
-			<td class = "employeeID">{{player._id}}</td>
+
+
+
+		<tr ng-repeat="player in players | orderBy: '-score'">
+			<td class="employeeName" ng-click="getID()">{{player.name}}</td>
+			<td class="employeeScore">{{player.score}}</td>
+			<td class="employeeID" >{{player._id}}</td>
 		</tr>
 		</tbody>
 	</table>
 	<!-- End todo -->
 	<br>
 
-	<a class="increment waves-effect waves-light btn teal lighten-1" ng-click="addFivePoints()">Give 5 Points!</a>
+	<a class="increment waves-effect waves-light btn teal lighten-1" ng-click="getID()">Give 5 Points!</a>
 	<a class="decrement waves-effect waves-light btn teal lighten-1">Remove 5 Points!</a>
 
 </div>

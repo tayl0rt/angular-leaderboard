@@ -24,7 +24,7 @@
 	<form class="col s12">
 		<div class="">
 			<div class="input-field col s12">
-				<input type="text" id="name" class="form-control" ng-model="player.name">
+				<input type="text" id="name" class="form-control" ng-model="playerName">
 				<label for="name">Name</label>
 			</div>
 			<div class="input-field col s12">
@@ -56,17 +56,23 @@
 
 
 
-		<tr ng-repeat="player in players | orderBy: '-score'">
-			<td class="employeeName" ng-click="getID()">{{player.name}}</td>
+		<tr ng-repeat="player in players | orderBy: '-score'" ng-click="setSelectedPlayer(player._id)" ng-class="{selected: player._id === selectedPlayer}">
+			<td class="employeeName">{{player.name}}</td>
 			<td class="employeeScore">{{player.score}}</td>
 			<td class="employeeID" >{{player._id}}</td>
+
+			<!--todo: Make these buttons below look better-->
+			<td><a class="increment waves-effect waves-light btn teal lighten-1" ng-click="addFive()">Give 5 Points!</a></td>
+			<td><a class="decrement waves-effect waves-light btn teal lighten-1">Remove 5 Points!</a></td>
+			<td><a class="decrement waves-effect waves-light btn white-text red lighten-1" ng-click="removePlayer(player._id)">Remove Employee</a></td>
+
+
 		</tr>
 		</tbody>
 	</table>
-	<!-- End todo -->
-	<br>
 
-	<a class="increment waves-effect waves-light btn teal lighten-1" ng-click="getID()">Give 5 Points!</a>
-	<a class="decrement waves-effect waves-light btn teal lighten-1">Remove 5 Points!</a>
+
+
+
 
 </div>

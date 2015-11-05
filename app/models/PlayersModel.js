@@ -1,11 +1,11 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var PlayerSchema   = new Schema({
-		_id: String,
+var PlayerSchema = new Schema({
+
 		name: String,
 		score: 0
 	},
-	{collection: 'Players' });
+	{collection: 'Players'});
 
-module.exports = mongoose.model('Players', PlayerSchema);
+module.exports = mongoose.model('Player', PlayerSchema);

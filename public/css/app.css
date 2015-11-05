@@ -30,3 +30,7 @@
   content: "";
   padding: 0;
 }
+
+.selected {
+  background-color: #80cbc4 !important;
+}

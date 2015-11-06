@@ -62,8 +62,8 @@
 			<td class="employeeID" >{{player._id}}</td>
 
 			<!--todo: Make these buttons below look better-->
-			<td><a class="increment waves-effect waves-light btn teal lighten-1" ng-click="addFive()">Give 5 Points!</a></td>
-			<td><a class="decrement waves-effect waves-light btn teal lighten-1">Remove 5 Points!</a></td>
+			<td><a class="increment waves-effect waves-light btn teal lighten-1" ng-click="addFive(player._id)">Give 5 Points!</a></td>
+			<td><a class="decrement waves-effect waves-light btn teal lighten-1" ng-click="removeFive(player._id)">Remove 5 Points!</a></td>
 			<td><a class="decrement waves-effect waves-light btn white-text red lighten-1" ng-click="removePlayer(player._id)">Remove Employee</a></td>
 
 

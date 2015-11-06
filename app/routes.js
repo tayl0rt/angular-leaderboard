@@ -64,20 +64,47 @@ var player = new Players();
 	//todo: fix PUT error - either throws a 'CastError: Cast to ObjectId failed for value "[object Object]" at path "_id"'
 	// or TypeError: mongoose.Types.ObjectId.fromString is not a function depending on if you use mongoose.Types.ObjectId.fromString()
 	// hmmmm
-	app.put('/api/players/:_id', function(req, res) {
+	app.put('/api/players/score/addfive/:_id', function(req, res) {
 
 		var playerID = req.params._id;
-		var playerObjectId = mongoose.Types.ObjectId.fromString( playerID );
+		/*var playerObjectId = mongoose.Types.ObjectId.fromString( playerID );*/
 
 
-		Players.find({_id: playerObjectId }, function(err, doc) {
+		Players.find({_id: playerID }, function(err, doc) {
 
 			if (err) {
 				res.send(err);
 			}
 
 			/*doc.score = +5;*/
-			Players.update(function(err) {
+			Players.update({ $inc: {score: 5} }, function(err) {
+				if (err) {
+					console.log('Error! - ' + err);
+				}
+			});
+
+			res.json(doc);
+			console.log(res);
+
+			//Refresh the list of players
+			Players.find();
+		});
+	});
+
+	app.put('/api/players/score/removefive/:_id', function(req, res) {
+
+		var playerID = req.params._id;
+		/*var playerObjectId = mongoose.Types.ObjectId.fromString( playerID );*/
+
+
+		Players.find({_id: playerID }, function(err, doc) {
+
+			if (err) {
+				res.send(err);
+			}
+
+			/*doc.score = +5;*/
+			Players.update({ $inc: {score: -5} }, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
 				}

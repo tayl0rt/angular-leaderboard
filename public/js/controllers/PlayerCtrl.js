@@ -19,6 +19,7 @@ angular.module('PlayerCtrl', [])
 					console.log('Error: ' + data);
 				});
 		};
+
 		$scope.loadPlayers();
 
 
@@ -36,11 +37,11 @@ angular.module('PlayerCtrl', [])
 			$http.post('/api/players', player)
 					.success(function() {
 						//console.log(response);
-						$scope.loadPlayers();
+						$scope.loadPlayers()
 					})
 					.error(function(error) {
 						console.log('Error! - ' + error);
-					})
+					});
 
 		};
 
@@ -62,7 +63,21 @@ angular.module('PlayerCtrl', [])
 
 			console.log(id);
 
-			$http.put('/api/players/' + id, { $inc: {score: 5} })
+			$http.put('/api/players/score/addfive/' + id, { $inc: {score: 5} })
+					.success(function(response) {
+						console.log(response);
+						$scope.loadPlayers();
+					})
+					.error(function(error) {
+						console.log('Error! - ' + error);
+					})
+		};
+
+		$scope.removeFive = function(id) {
+
+			console.log(id);
+
+			$http.put('/api/players/score/removefive/' + id, { $inc: {score: -5} })
 					.success(function(response) {
 						console.log(response);
 						$scope.loadPlayers();
@@ -79,6 +94,8 @@ angular.module('PlayerCtrl', [])
 		$scope.setSelectedPlayer = function(selectedPlayer) {
 			console.log(this.player._id);
 			$scope.selectedPlayer = selectedPlayer;
-		}
+		};
 
 	}]);
+
+

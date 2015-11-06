@@ -34,3 +34,7 @@
 .selected {
   background-color: #80cbc4 !important;
 }
+
+.player-entry {
+  font-size: 1.25em
+}

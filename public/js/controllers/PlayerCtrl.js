@@ -37,6 +37,7 @@ angular.module('PlayerCtrl', [])
 			$http.post('/api/players', player)
 					.success(function() {
 						//console.log(response);
+						$scope.playerName = '';
 						$scope.loadPlayers()
 					})
 					.error(function(error) {
@@ -76,6 +77,7 @@ angular.module('PlayerCtrl', [])
 		$scope.removeFive = function(id) {
 
 			console.log(id);
+			console.log($scope.selectedPlayer);
 
 			$http.put('/api/players/score/removefive/' + id, { $inc: {score: -5} })
 					.success(function(response) {
@@ -94,6 +96,7 @@ angular.module('PlayerCtrl', [])
 		$scope.setSelectedPlayer = function(selectedPlayer) {
 			console.log(this.player._id);
 			$scope.selectedPlayer = selectedPlayer;
+			console.log($scope.selectedPlayer);
 		};
 
 	}]);

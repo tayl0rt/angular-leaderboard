@@ -61,9 +61,7 @@ var player = new Players();
 
 	//PUT
 
-	//todo: fix PUT error - either throws a 'CastError: Cast to ObjectId failed for value "[object Object]" at path "_id"'
-	// or TypeError: mongoose.Types.ObjectId.fromString is not a function depending on if you use mongoose.Types.ObjectId.fromString()
-	// hmmmm
+	//todo: fix PUT error - Only updates the top player in the table....strange.
 	app.put('/api/players/score/addfive/:_id', function(req, res) {
 
 		var playerID = req.params._id;
@@ -77,7 +75,7 @@ var player = new Players();
 			}
 
 			/*doc.score = +5;*/
-			Players.update({ $inc: {score: 5} }, function(err) {
+			Players.update(req.body, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
 				}
@@ -104,14 +102,15 @@ var player = new Players();
 			}
 
 			/*doc.score = +5;*/
-			Players.update({ $inc: {score: -5} }, function(err) {
+			Players.update(req.body, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
 				}
 			});
 
 			res.json(doc);
-			console.log(res);
+			console.log(playerID);
+			console.log(doc);
 
 			//Refresh the list of players
 			Players.find();

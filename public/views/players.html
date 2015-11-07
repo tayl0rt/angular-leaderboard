@@ -50,17 +50,10 @@
 		</thead>
 		<tbody>
 
-		<!-- todo: Figure out how to select an employee by ID and highlight the specific employee light teal -->
-		<!-- See Below -->
-
-
-
 		<tr ng-repeat="player in players | orderBy: '-score'" ng-click="setSelectedPlayer(player._id)" ng-class="{selected: player._id === selectedPlayer}">
 			<td class="employeeName player-entry">{{player.name}}</td>
 			<td class="employeeScore player-entry">{{player.score}}</td>
 			<!--<td class="employeeID" >{{player._id}}</td>-->
-
-			<!--todo: Make these buttons below look better-->
 
 		</tr>
 		</tbody>

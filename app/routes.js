@@ -73,9 +73,7 @@ var player = new Players();
 			if (err) {
 				res.send(err);
 			}
-
-			/*doc.score = +5;*/
-			Players.update(req.body, function(err) {
+			Players.update({_id: playerID}, req.body, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
 				}
@@ -83,6 +81,8 @@ var player = new Players();
 
 			res.json(doc);
 			console.log(res);
+			console.log(playerID);
+
 
 			//Refresh the list of players
 			Players.find();
@@ -102,7 +102,7 @@ var player = new Players();
 			}
 
 			/*doc.score = +5;*/
-			Players.update(req.body, function(err) {
+			Players.update({_id: playerID}, req.body, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
 				}

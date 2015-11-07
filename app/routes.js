@@ -2,9 +2,7 @@ var Players = require('./models/PlayersModel');
 
 module.exports = function(app) {
 
-var player = new Players();
-
-	// REST api
+	//REST api
 
 	//GET
 	app.get('/api/players', function(req, res) {
@@ -60,19 +58,18 @@ var player = new Players();
 
 
 	//PUT
-
-	//todo: fix PUT error - Only updates the top player in the table....strange.
-	app.put('/api/players/score/addfive/:_id', function(req, res) {
+	app.put('/api/players/score/update/:_id', function(req, res) {
 
 		var playerID = req.params._id;
-		/*var playerObjectId = mongoose.Types.ObjectId.fromString( playerID );*/
 
-
+		//query player by ID
 		Players.find({_id: playerID }, function(err, doc) {
 
 			if (err) {
 				res.send(err);
 			}
+			//not forgetting to query the player here as well - {_id: playerID} in Players.update({_id: playerID}, req.body, function(err) {})
+			//req.body = the score adjustment - found in PlayerCtrl.js
 			Players.update({_id: playerID}, req.body, function(err) {
 				if (err) {
 					console.log('Error! - ' + err);
@@ -88,35 +85,6 @@ var player = new Players();
 			Players.find();
 		});
 	});
-
-	app.put('/api/players/score/removefive/:_id', function(req, res) {
-
-		var playerID = req.params._id;
-		/*var playerObjectId = mongoose.Types.ObjectId.fromString( playerID );*/
-
-
-		Players.find({_id: playerID }, function(err, doc) {
-
-			if (err) {
-				res.send(err);
-			}
-
-			/*doc.score = +5;*/
-			Players.update({_id: playerID}, req.body, function(err) {
-				if (err) {
-					console.log('Error! - ' + err);
-				}
-			});
-
-			res.json(doc);
-			console.log(playerID);
-			console.log(doc);
-
-			//Refresh the list of players
-			Players.find();
-		});
-	});
-
 
 	// =========================== front end route ==================================== //
 

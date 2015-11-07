@@ -4,26 +4,31 @@ angular.module('PlayerCtrl', [])
 
 	.controller('PlayerController', ['$scope', '$http', function($scope, $http) {
 
+		//Create the playerName variable to hold the Name for the newly created player
+		$scope.playerName = '';
+
+		//Create selectedPlayer variable to hold the _id for each player - begins null
 		$scope.selectedPlayer = null;
 
+
+		//REST API
+
+		//wrap GET request in a function so we can just call it as needed.
 		$scope.loadPlayers = function() {
 
 			$http.get('/api/players')
-				.success(function (response) {
-					$scope.players = response;
-					console.log($scope.players);
-					console.log('successful load');
-				})
+					.success(function (response) {
+						$scope.players = response;
+						console.log($scope.players);
+						console.log('successful load');
+					})
 
-				.error(function data() {
-					console.log('Error: ' + data);
-				});
+					.error(function data() {
+						console.log('Error: ' + data);
+					});
 		};
 
 		$scope.loadPlayers();
-
-
-		$scope.playerName = '';
 
 		$scope.addPlayer = function() {
 
@@ -32,11 +37,8 @@ angular.module('PlayerCtrl', [])
 				score: 0
 			};
 
-			console.log(typeof player);
-
 			$http.post('/api/players', player)
 					.success(function() {
-						//console.log(response);
 						$scope.playerName = '';
 						$scope.loadPlayers()
 					})
@@ -52,7 +54,7 @@ angular.module('PlayerCtrl', [])
 
 			$http.delete('/api/players/' + id)
 				.success(function(response) {
-					console.log(response);
+					console.log('DELETE response - ' + response);
 					$scope.loadPlayers();
 				})
 				.error(function(error) {
@@ -64,9 +66,9 @@ angular.module('PlayerCtrl', [])
 
 			console.log(id);
 
-			$http.put('/api/players/score/addfive/' + id, { $inc: {score: 5} })
+			$http.put('/api/players/score/update/' + id, { $inc: {score: 5} })
 					.success(function(response) {
-						console.log(response);
+						console.log('PUT - add five points response -' + response);
 						$scope.loadPlayers();
 					})
 					.error(function(error) {
@@ -79,9 +81,9 @@ angular.module('PlayerCtrl', [])
 			console.log(id);
 			console.log($scope.selectedPlayer);
 
-			$http.put('/api/players/score/removefive/' + id, { $inc: {score: -5} })
+			$http.put('/api/players/score/update/' + id, { $inc: {score: -5} })
 					.success(function(response) {
-						console.log(response);
+						console.log('PUT - remove five points response -' + response);
 						$scope.loadPlayers();
 					})
 					.error(function(error) {
@@ -89,10 +91,7 @@ angular.module('PlayerCtrl', [])
 					})
 		};
 
-
-		//todo: Figure out how to select an employee by ID and highlight the specific employee light teal
-
-
+		//grab player ID
 		$scope.setSelectedPlayer = function(selectedPlayer) {
 			console.log(this.player._id);
 			$scope.selectedPlayer = selectedPlayer;

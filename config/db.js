@@ -1,8 +1,7 @@
-/*
-module.exports = {
-	url : 'mongodb://taylort:Bafmn420!@taylorserver.strangled.net:27017/meanLeaderboard'
-}*/
+//Define your DB in dbURI.js, require it here, and connect it with mongoose
 
 mongoose = require('mongoose');
 
-mongoose.connect('mongodb://taylort:Bafmn420!@taylorserver.strangled.net:27017/meanLeaderboard');
+db = require('../config/dbURI');
+
+mongoose.connect(db.URI);

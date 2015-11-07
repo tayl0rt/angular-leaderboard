@@ -21,10 +21,11 @@
 <div class="card-panel white">
 <div class="row">
 	<p class="flow-text center-align">Add Employee to list</p>
-	<form class="col s12">
+	<!--player form with validation-->
+	<form name="playerForm" ng-submit="addPlayer()" novalidate class="col s12">
 		<div class="">
 			<div class="input-field col s12">
-				<input type="text" id="name" class="form-control" ng-model="playerName">
+				<input type="text" id="name" name="name" class="form-control" ng-model="playerName" required>
 				<label for="name">Name</label>
 			</div>
 			<div class="input-field col s12">
@@ -32,7 +33,8 @@
 				<label for="disabled">Score will default to 0 - Add 5 points from the button below</label>
 			</div>
 		</div>
-		<button type="submit" class="right btn-large teal lighten-1 medium" ng-click="addPlayer()">Add Employee</button>
+		<!--Includes validation on submit button - ng-disabled - can't submit empty Name field.-->
+		<button type="submit" class="right btn-large teal lighten-1 medium" ng-disabled=!playerForm.$valid>Add Employee</button>
 		</form>
 	</div>
 </div>
@@ -53,7 +55,6 @@
 		<tr ng-repeat="player in players | orderBy: '-score'" ng-click="setSelectedPlayer(player._id)" ng-class="{selected: player._id === selectedPlayer}">
 			<td class="employeeName player-entry">{{player.name}}</td>
 			<td class="employeeScore player-entry">{{player.score}}</td>
-			<!--<td class="employeeID" >{{player._id}}</td>-->
 
 		</tr>
 		</tbody>

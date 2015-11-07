@@ -19,8 +19,12 @@ Wonderful material design framework.
 More info here - https://angularjs.org/
 
 
-### This is an ultra boredom project, and is currently a work in progress.
+### This is a "for fun" project - might always be a work in progress, but it's coming along!
 
-## Uses http-server
+## Grab dependencies
 
-Run `node angular-leaderboard/node_modules/http-server/bin/http-server` to start
+as usual run `npm install` and  `bower install`
+
+## Uses server.js file
+
+Run `node server.js` to start

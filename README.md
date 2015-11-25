@@ -21,6 +21,8 @@ More info here - https://angularjs.org/
 
 ### This is a "for fun" project - might always be a work in progress, but it's coming along!
 
+#SETUP
+
 ## Grab dependencies
 
 as usual run `npm install` and  `bower install`
@@ -28,3 +30,7 @@ as usual run `npm install` and  `bower install`
 ## Uses server.js file
 
 Run `node server.js` to start
+
+## Add DB URI
+
+Add your DB URI from Mongo in dbURI.js

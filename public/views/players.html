@@ -1,3 +1,4 @@
+<!--Players HTML File-->
 
 <div class="card-panel white">
 	<div class="container">
@@ -6,43 +7,56 @@
 	</div>
 </div>
 
-<!--<div class="card-panel white">
-	<div class="container input-field">
-		<p class="flow-text center-align">Add Employee</p>
-		<input type="text" id="name" class="form-control" placeholder="Employee Name" ng-model="player.name">
-		<label for="name">Name</label>
-		<input type="text" id="score" class="form-control col s4 right" placeholder="Employee Score" ng-model="player.score">
-		<label for="score">Score</label>
-		<button type="submit" class="right btn medium" ng-click="addPlayer()">Add Employee</button>
-		<br>
-		<br>
-	</div>
-</div>-->
+<!--Add Player Form-->
 <div class="card-panel white">
-<div class="row">
-	<p class="flow-text center-align">Add Employee to list</p>
+	<div class="row">
+		<p class="flow-text center-align">Add Employee to list</p>
 	<!--player form with validation-->
-	<form name="playerForm" ng-submit="addPlayer()" novalidate class="col s12">
-		<div class="">
-			<div class="input-field col s12">
-				<input type="text" id="name" name="name" class="form-control" ng-model="playerName" required>
-				<label for="name">Name</label>
+		<form name="playerForm" ng-submit="addPlayer()" novalidate class="col s12">
+			<div class="">
+				<div class="input-field col s12">
+					<input type="text" id="name" name="name" class="form-control" ng-model="playerName" required>
+					<label for="name">Name</label>
+				</div>
+				<div class="input-field col s12">
+					<input disabled type="text" id="disabled" class="validate">
+					<label for="disabled">Score will default to 0 - Add 5 points from the button below</label>
+				</div>
 			</div>
-			<div class="input-field col s12">
-				<input disabled type="text" id="disabled" class="validate">
-				<label for="disabled">Score will default to 0 - Add 5 points from the button below</label>
-			</div>
-		</div>
 		<!--Includes validation on submit button - ng-disabled - can't submit empty Name field.-->
-		<button type="submit" class="right btn-large teal lighten-1 medium" ng-disabled=!playerForm.$valid>Add Employee</button>
+			<button type="submit" class="right btn-large teal lighten-1 medium" ng-disabled=!playerForm.$valid>Add Employee</button>
 		</form>
 	</div>
 </div>
 
+<!--Leaderboard Card-->
 <div class="card-panel white">
 
 	<p class="flow-text center-align">Current Rankings</p>
 
+	<div class="container">
+
+		<div class="input-field col s9">
+			<input id="playersearchbar" type="text" ng-model="searchPlayer">
+			<label for="playersearchbar">Search Employees</label>
+		</div>
+
+
+		<form action="#">
+			<p class="">
+				<input name="playerSortButtons" type="radio" id="sortByName" ng-click="sortPlayersName()" />
+				<label for="sortByName">Sort by Name</label>
+			</p>
+			<p class="">
+				<input name="playerSortButtons" type="radio" id="sortByScore" ng-click="sortPlayersScore()" />
+				<label for="sortByScore">Sort by Highest Score</label>
+			</p>
+		</form>
+
+
+	</div>
+
+	<!--ng-repeat table-->
 	<table class="bordered">
 		<thead>
 		<tr>
@@ -52,7 +66,7 @@
 		</thead>
 		<tbody>
 
-		<tr ng-repeat="player in players | orderBy: '-score'" ng-click="setSelectedPlayer(player._id)" ng-class="{selected: player._id === selectedPlayer}">
+		<tr ng-repeat="player in players | orderBy:playerFilter | filter:searchPlayer" ng-click="setSelectedPlayer(player._id)" ng-class="{selected: player._id === selectedPlayer}">
 			<td class="employeeName player-entry">{{player.name}}</td>
 			<td class="employeeScore player-entry">{{player.score}}</td>
 
@@ -60,7 +74,7 @@
 		</tbody>
 	</table>
 	<br>
-
+	<!--REST API related buttons-->
 	<a class="increment waves-effect waves-light btn white-text teal lighten-1 " ng-click="addFive(selectedPlayer)">Give 5 Points!</a>
 	<a class="decrement waves-effect waves-light btn-flat white-text teal lighten-1 " ng-click="removeFive(selectedPlayer)">Remove 5 Points!</a>
 	<a class="decrement waves-effect waves-light btn-flat white-text red lighten-1 " ng-click="removePlayer(selectedPlayer)">Remove Employee</a>

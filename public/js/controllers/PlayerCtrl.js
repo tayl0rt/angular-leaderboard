@@ -30,6 +30,7 @@ angular.module('PlayerCtrl', [])
 
 		$scope.loadPlayers();
 
+		//POST
 		$scope.addPlayer = function() {
 
 			var player = {
@@ -48,6 +49,7 @@ angular.module('PlayerCtrl', [])
 
 		};
 
+		//DELETE
 		$scope.removePlayer = function(id) {
 
 			console.log(id);
@@ -62,6 +64,7 @@ angular.module('PlayerCtrl', [])
 				})
 		};
 
+		//PUT
 		$scope.addFive = function(id) {
 
 			console.log(id);
@@ -76,6 +79,7 @@ angular.module('PlayerCtrl', [])
 					})
 		};
 
+		//PUT
 		$scope.removeFive = function(id) {
 
 			console.log(id);
@@ -97,6 +101,18 @@ angular.module('PlayerCtrl', [])
 			$scope.selectedPlayer = selectedPlayer;
 			console.log($scope.selectedPlayer);
 		};
+
+		//ng-repeat player in players orderBy functions
+		$scope.playerFilter = '';
+
+		$scope.sortPlayersName = function() {
+			$scope.playerFilter = "name";
+		};
+
+		$scope.sortPlayersScore = function() {
+			$scope.playerFilter = "-score";
+		};
+
 
 	}]);
 
